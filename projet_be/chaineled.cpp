@@ -1,23 +1,23 @@
-#include "leds.h"
+#include "chaineled.h"
 #include <Arduino.h>
 
-leds::leds(){
-  this->chaine = ChainableLED(PIN_LEDC, PIN_LEDD, N_LED);
+chaineled::chaineled(){
   this->etat = new bool[N_LED];
 }
 
-void leds::init() {
+
+void chaineled::init() {
   this->chaine.init();
 }
 
-void leds::eteint() {
+void chaineled::eteint() {
   for (int i=0;i<N_LED;i++) {
     this->chaine.setColorRGB(i,0,0,0);
     this->etat[i]=false;
   }
 }
 
-void leds::allume(int r, int g, int b){
+void chaineled::allume(int r, int g, int b){
   for (int i=0;i<N_LED;i++) {
     this->chaine.setColorRGB(i,r,g,b);
     this->etat[i]=true;
@@ -26,6 +26,6 @@ void leds::allume(int r, int g, int b){
 
 //void sequence();
 
-bool leds::getEtat(int indice) {
+bool chaineled::getEtat(int indice) {
   return this->etat ;
 }

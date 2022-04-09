@@ -1,6 +1,6 @@
 #include "bouton.h"
 #include "potentiometre.h"
-#include "leds.h"
+#include "chaineled.h"
 
 void setup() {
   // put your setup code here, to run once:
@@ -12,11 +12,11 @@ void setup() {
 bouton coucou;
 potentiometre pot;
 
-leds ledasse ;
+//leds ledasse ;
 
 void loop() {
-  ledasse.init();
-  ledasse.allume(255,0,0);
-  delay(500);
-  ledasse.eteint();
+  //ledasse.init();
+  //ledasse.allume(255,0,0);
+  //delay(500);
+  //ledasse.eteint();
 }
