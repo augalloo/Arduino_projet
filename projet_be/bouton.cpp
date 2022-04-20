@@ -9,6 +9,6 @@ void bouton::init() {
   pinMode(PIN_BOU,INPUT);
 }
 bool bouton::getEtat() {
-  this->etat = !digitalRead(PIN_BOU);
+  this->etat = digitalRead(PIN_BOU);
   return this->etat ;
 }
