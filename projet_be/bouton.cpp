@@ -1,14 +1,15 @@
 #include "bouton.h"
 #include <Arduino.h>
 
-bouton::bouton():capteur() {
+bouton::bouton(int pin):capteur() {
   this->etat = false ;
+  this->pin = pin ;
 }
 
 void bouton::init() {
-  pinMode(PIN_BOU,INPUT);
+  pinMode(this->pin,INPUT);
 }
 bool bouton::getEtat() {
-  this->etat = digitalRead(PIN_BOU);
+  this->etat = digitalRead(this->pin);
   return this->etat ;
 }

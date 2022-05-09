@@ -1,7 +1,8 @@
 #include "potentiometre.h" ; 
 #include "ecran.h";
+#include <Arduino.h>
 
-ecran::ecran():rgb_lcd(){
+ecran::ecran():rgb_lcd(),actionneur(){
 }
 
 void ecran::init() {

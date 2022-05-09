@@ -4,13 +4,12 @@
 #include <ChainableLED.h>
 #include "ecran.h"
 
-#define PIN_LEDC 13
-#define PIN_LEDD 15
-#define N_LED 7
+
 
 class chaineled : public ChainableLED {
   private:
   bool *etat;
+  int nled ;
   
   public:
   chaineled(int clk, int data, int num_led);

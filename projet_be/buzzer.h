@@ -1,16 +1,18 @@
 #ifndef BUZZER_H
 #define BUZZER_H
 #include "chaineled.h"
+#include "actionneur.h"
 
-#define PIN_BUZ 12
 
-class buzzer {
+
+class buzzer : public actionneur {
   private :
   bool etat ;
+  int pin ;
   
   public :
-  buzzer();
-  void init();
+  buzzer(int pin);
+  virtual void init();
   void alarme(int secondes, chaineled led);
   void sonne();
   void eteint();

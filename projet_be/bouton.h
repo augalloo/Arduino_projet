@@ -3,16 +3,16 @@
 #include "capteur.h"
 
 
-#define PIN_BOU 14
 
 
 class bouton : public capteur {
   private:
   bool etat ;
+  int pin ;
 
   public:
-  bouton();
-  void init();
+  bouton(int pin);
+  virtual void init();
   bool getEtat();
 };
 

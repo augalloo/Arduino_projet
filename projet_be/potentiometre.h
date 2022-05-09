@@ -15,7 +15,7 @@ class potentiometre : public capteur {
 
   public :
   potentiometre();
-  void init();
+  virtual void init();
   float getVoltage();
   float getAngle();
   int getPosition();

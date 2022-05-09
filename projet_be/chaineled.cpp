@@ -2,20 +2,21 @@
 #include <Arduino.h>
 
 
-chaineled::chaineled(int clk, int data, int num_led):ChainableLED(clk, data, num_led){
-  this->etat = new bool[N_LED];
+chaineled::chaineled(int clk, int data, int num_led):ChainableLED(clk, data,num_led){
+  this->etat = new bool[num_led];
+  this->nled = num_led ;
 }
 
 
 void chaineled::eteint() {
-  for (int i=0;i<N_LED;i++) {
+  for (int i=0;i<this->nled;i++) {
     this->setColorRGB(i,0,0,0);
     this->etat[i]=false;
   }
 }
 
 void chaineled::allume(int r, int g, int b){
-  for (int i=0;i<N_LED;i++) {
+   for (int i=0;i<this->nled;i++) {
     this->setColorRGB(i,r,g,b);
     this->etat[i]=true;
   }
