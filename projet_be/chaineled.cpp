@@ -1,13 +1,17 @@
 #include "chaineled.h"
 #include <Arduino.h>
 
+/*
+ * Implémentation des fonctions de la classe chaineled.
+ */
 
+ //Constructeur
 chaineled::chaineled(int clk, int data, int num_led):ChainableLED(clk, data,num_led){
   this->etat = new bool[num_led];
   this->nled = num_led ;
 }
 
-
+//Met la chaine LED sur OFF.
 void chaineled::eteint() {
   for (int i=0;i<this->nled;i++) {
     this->setColorRGB(i,0,0,0);
@@ -15,6 +19,7 @@ void chaineled::eteint() {
   }
 }
 
+//Met la chaine LED sur ON.
 void chaineled::allume(int r, int g, int b){
    for (int i=0;i<this->nled;i++) {
     this->setColorRGB(i,r,g,b);
@@ -22,12 +27,12 @@ void chaineled::allume(int r, int g, int b){
   }
 }
 
-//void sequence();
-
+//Assesseur du tableau d'état de la chaine
 bool chaineled::getEtat(int indice) {
   return this->etat ;
 }
 
+//Cette fonction affiche une configuration différente de LED allumées/éteintes pour chaque résultat possible du dé (1..6).
 void chaineled::afficherDe(int resultat) {
   int r = 0;
   int g = 255;
@@ -49,6 +54,8 @@ void chaineled::afficherDe(int resultat) {
   }
 }
 
+//La fonction sequence permet de déplacer une LED allumée le long de la chaine, suivant un motif prédéfini.
+//Elle est utilisée avant d'afficher le résultat du dé.
 void chaineled::sequence(int repet, ecran ecran) {
   int r = 0 ;
   int g = 200 ;
@@ -76,10 +83,14 @@ void chaineled::sequence(int repet, ecran ecran) {
   this->eteint();
 }
 
+//La fonction chrono lance le second mode du programme qui allume progressivement les LED décomposées en 3 sous-groupes. Après n secondes, toutes les LED seront complétement allumées.
+//Chaque led possède 50 niveaux de luminosité qui changent à chaque pas.
+//Un pas corrigé a été mis en place empirement afin de compenser le retard dû au temps de calcul.
 void chaineled::chrono(float secondes, ecran ecran) {
   float pas = (secondes/150.0)*1000.0;
   float pascorrige = pas - 0.10*1000 ;
   float temps = 0 ;
+  
   this->eteint();
   for (int j=1 ; j<51 ; j++) {
     delay(pascorrige);
